@@ -39,6 +39,7 @@ export interface MappingRow {
 export interface GenericItem {
   source_순번: string | number;
   source_Product: string;
+  Ingredient_eng: string;
   Ingredient_base: string;
   generic_품목기준코드: string;
   generic_제품명: string;
@@ -66,6 +67,7 @@ export interface MatchResult {
   MFDS_품목기준코드: string;
   MFDS_제형: string;
   Ingredient_raw: string;
+  Ingredient_eng: string;
   Ingredient_base: string;
   original_허가여부: string;
   generic_제품수: number;

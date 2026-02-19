@@ -19,7 +19,7 @@ interface Props {
 }
 
 const PAGE_SIZE = 20;
-const DISPLAY_COLS = ['순번', 'Product', 'MFDS_제품명', 'Ingredient_base', 'original_허가여부', 'generic_제품수', '매칭상태', '매칭신뢰도', '매칭점수', '검토필요'];
+const DISPLAY_COLS = ['순번', 'Product', 'MFDS_제품명', 'Ingredient_raw', 'Ingredient_eng', 'Ingredient_base', 'original_허가여부', 'generic_제품수', '매칭상태', '매칭신뢰도', '매칭점수', '검토필요'];
 
 function ConfidenceBadge({ level }: { level: string }) {
   const cls = level === 'HIGH' ? 'status-high' : level === 'MEDIUM' ? 'status-medium' : 'status-review';
