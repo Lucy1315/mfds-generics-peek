@@ -1,5 +1,5 @@
 import type { RawRow, MfdsRow, MappingRow, MatchResult, ProcessingOptions, ProcessingSummary, GenericItem, GenericListCompact } from './types';
-import { normText, extractCodeToken, ingKeyBase, sequenceMatcherRatio, getFirstToken, getPrefix } from './normalize';
+import { normText, extractCodeToken, ingKeyBase, sequenceMatcherRatio, getFirstToken, getPrefix, extractIngEng } from './normalize';
 
 interface MfdsIndices {
   exactEn: Map<string, MfdsRow[]>;
@@ -238,6 +238,7 @@ export function getGenericItems(
   return rows.map(r => ({
     source_순번: sourceSeq,
     source_Product: sourceProduct,
+    Ingredient_eng: extractIngEng(r.주성분),
     Ingredient_base: ingBase,
     generic_품목기준코드: r.품목기준코드,
     generic_제품명: r.제품명,
@@ -550,6 +551,7 @@ export function processMatching(
       MFDS_품목기준코드: matchedRow?.품목기준코드 ?? '',
       MFDS_제형: matchedRow?.제형 ?? '',
       Ingredient_raw: matchedRow?.주성분 ?? '',
+      Ingredient_eng: matchedRow ? extractIngEng(matchedRow.주성분) : '',
       Ingredient_base: ingBase,
       original_허가여부: matchedRow?.신약구분 === 'Y' ? 'Y' : '',
       generic_제품수: gc.count,

@@ -17,6 +17,7 @@ const PAGE_SIZE = 20;
 const DISPLAY_COLS: { key: keyof GenericItem; label: string }[] = [
   { key: 'source_순번', label: '순번' },
   { key: 'source_Product', label: 'Source Product' },
+  { key: 'Ingredient_eng', label: 'Ingredient (Eng)' },
   { key: 'Ingredient_base', label: 'Ingredient Base' },
   { key: 'generic_품목기준코드', label: '품목기준코드' },
   { key: 'generic_제품명', label: '제품명' },

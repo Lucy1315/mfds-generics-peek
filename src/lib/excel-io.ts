@@ -230,7 +230,7 @@ export async function generateOutputExcel(
 
   const cols = [
     '순번', 'Product', 'MFDS_제품명', 'MFDS_제품영문명', 'MFDS_품목기준코드', 'MFDS_제형',
-    'Ingredient_raw', 'Ingredient_base', 'original_허가여부', 'generic_제품수',
+    'Ingredient_raw', 'Ingredient_eng', 'Ingredient_base', 'original_허가여부', 'generic_제품수',
     '매칭상태', '매칭신뢰도', '매칭점수', '검토필요',
     'total_count_by_base', 'total_count_by_base_form', 'original_count_by_base',
     'generic_incl_original_by_base', 'generic_excl_original_by_base',
@@ -283,7 +283,7 @@ export async function generateOutputExcel(
 
   // Sheet 5: generic_items
   const giCols = [
-    'source_순번', 'source_Product', 'Ingredient_base',
+    'source_순번', 'source_Product', 'Ingredient_eng', 'Ingredient_base',
     'generic_품목기준코드', 'generic_제품명', 'generic_제품영문명',
     'generic_업체명', 'generic_제형', 'generic_허가일', 'generic_취소/취하',
     'matching_criteria',
@@ -308,7 +308,7 @@ export async function generateOutputExcel(
 export async function generateGenericItemsExcel(genericItems: GenericItem[]): Promise<void> {
   const wb = new ExcelJS.Workbook();
   const giCols = [
-    'source_순번', 'source_Product', 'Ingredient_base',
+    'source_순번', 'source_Product', 'Ingredient_eng', 'Ingredient_base',
     'generic_품목기준코드', 'generic_제품명', 'generic_제품영문명',
     'generic_업체명', 'generic_제형', 'generic_허가일', 'generic_취소/취하',
     'matching_criteria',

@@ -73,3 +73,24 @@ export function getFirstToken(normStr: string): string {
 export function getPrefix(s: string, len: number): string {
   return s.substring(0, len);
 }
+
+/** Extract English ingredient name from 주성분 field (often contains English in parentheses or mixed) */
+export function extractIngEng(ingredient: string): string {
+  if (!ingredient) return '';
+  const s = String(ingredient);
+  // Try extracting from parentheses first: e.g. "아세트아미노펜(Acetaminophen)"
+  const parenMatch = s.match(/\(([A-Za-z][A-Za-z0-9\s\-,.']+)\)/);
+  if (parenMatch) return parenMatch[1].trim();
+  // Try extracting after >> separator
+  const parts = s.split('>>');
+  for (const p of parts) {
+    const trimmed = p.trim();
+    if (/^[A-Za-z]/.test(trimmed) && /[A-Za-z]{3,}/.test(trimmed)) return trimmed;
+  }
+  // Try extracting English tokens from the string
+  const engTokens = s.match(/[A-Za-z][A-Za-z0-9\-'.]{2,}/g);
+  if (engTokens && engTokens.length > 0) {
+    return engTokens.join(' ');
+  }
+  return '';
+}
