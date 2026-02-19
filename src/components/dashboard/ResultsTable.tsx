@@ -9,6 +9,7 @@ import { Download, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { MatchResult, ProcessingSummary, MappingRow, GenericItem, GenericListCompact } from '@/lib/types';
 import { generateOutputExcel } from '@/lib/excel-io';
 import GenericItemsPanel from './GenericItemsPanel';
+import UsageGuideTab from './UsageGuideTab';
 
 interface Props {
   results: MatchResult[];
@@ -133,6 +134,7 @@ export default function ResultsTable({ results, summary, mappingRows, genericIte
             <TabsTrigger value="all" className="text-xs">전체 결과 ({results.length})</TabsTrigger>
             <TabsTrigger value="review" className="text-xs">Review Needed ({reviewResults.length})</TabsTrigger>
             <TabsTrigger value="generic" className="text-xs">Generic Items ({genericItems.length})</TabsTrigger>
+            <TabsTrigger value="guide" className="text-xs">📖 사용방법</TabsTrigger>
           </TabsList>
           <TabsContent value="all">
             <DataTable data={results} search={search} onSelectRow={handleSelectRow} selectedSeq={selectedSeq} />
@@ -147,6 +149,9 @@ export default function ResultsTable({ results, summary, mappingRows, genericIte
           </TabsContent>
           <TabsContent value="generic">
             <GenericItemsPanel genericItems={genericItems} selectedSeq={null} />
+          </TabsContent>
+          <TabsContent value="guide">
+            <UsageGuideTab />
           </TabsContent>
         </Tabs>
       </CardContent>
